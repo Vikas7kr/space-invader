@@ -2,24 +2,25 @@ import pygame
 import random
 import math
 from pygame import mixer
+
 #intialise the pygame
 pygame.init()
 
 #create the screen
 screen=pygame.display.set_mode((800,600))  #800=width,600=height
 #background
-background=pygame.image.load("bck.png")
+background=pygame.image.load("images/bck.png")
 
 #sound
-mixer.music.load("back.wav")
+mixer.music.load("images/back.wav")
 mixer.music.play(-1)
 #title and icon.......window screen
 pygame.display.set_caption("SPACE INVADERS")
-icon = pygame.image.load('spaceship.png')
+icon = pygame.image.load('images/spaceship.png')
 pygame.display.set_icon(icon)
 
 #player
-playerImg=pygame.image.load("player1.png")
+playerImg=pygame.image.load("images/player1.png")
 playerX=370
 playerY=480
 playerX_change=0
@@ -34,7 +35,7 @@ enemyY_change=[]
 num=6 #number of enemies
 
 for i in range(num):
-    enemyImg.append(pygame.image.load("enemy.png"))
+    enemyImg.append(pygame.image.load("images/enemy.png"))
     enemyX.append(random.randint(0,735))
     enemyY.append(random.randint(50,150))
     enemyX_change.append(2.5)
@@ -42,7 +43,7 @@ for i in range(num):
 
 #bullet
 #ready - can't see the bullet on the screen
-bulletImg=pygame.image.load("bullet.png")
+bulletImg=pygame.image.load("images/bullet.png")
 bulletX=0
 bulletY=480
 bulletX_change=0
@@ -99,7 +100,7 @@ while running:
                 playerX_change=5
             if event.key == pygame.K_SPACE:
                 if bullet_state =="ready":
-                    bullet_sound=mixer.Sound("laser.wav")
+                    bullet_sound=mixer.Sound("audio/laser.wav")
                     bullet_sound.play()
                     bulletX=playerX
                     bullet_fire(bulletX,bulletY)
@@ -135,7 +136,7 @@ while running:
             #iscollision
         collision=iscollision(enemyX[i],enemyY[i],bulletX,bulletY)
         if collision:
-            gun_sound=mixer.Sound("gun.wav")
+            gun_sound=mixer.Sound("audio/gun.wav")
             gun_sound.play()
             bulletY=480
             bullet_state="ready"
